@@ -16,7 +16,7 @@ module DiscourseTheme
       Dir.chdir(dir + "/../") do
         Find.find(File.basename(dir)) do |x|
           bn = File.basename(x)
-          Find.prune if bn == "node_modules" || bn == "src" || bn[0] == ?.
+          Find.prune if bn == "node_modules" || bn == "src" || bn[0] == ?.  || bn.include?(':') || bn.end_with?('~')
           next if File.directory?(x)
 
           Minitar.pack_file(x, tar)
